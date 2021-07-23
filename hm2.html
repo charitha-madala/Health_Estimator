@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*
+			{
+				box-sizing: border-box;
+			}
+			.p{
+			top: 50%; 
+			right: 50%;
+			transform: translate(50%,-50%);
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 40%;
+   			font-weight: 700;
+			
+			}
+			
+			.text
+			{
+				top: 50%; 
+				right: 50%;
+			    transform: translate(50%,-50%);
+    			font-family: Arial, Helvetica, sans-serif;
+    			font-size: 6em;
+   				font-weight: 700;
+				color:#d3d3d3;
+				text-shadow: 
+					1px 1px 1px #000000,
+					1px 2px 1px #000000,
+					1px 3px 1px #000000,
+					1px 4px 1px #000000,
+					1px 5px 1px #000000,
+					1px 6px 1px #000000,
+					1px 7px 1px #000000,
+					1px 8px 1px #000000,
+					1px 9px 1px #000000,
+					1px 10px 1px #000000,
+				1px 18px 6px rgba(16,16,16,0.4),
+				1px 22px 10px rgba(16,16,16,0.2),
+				1px 25px 35px rgba(16,16,16,0.2),
+				1px 30px 60px rgba(16,16,16,0.4);
+			}
+			.text1
+			{
+				top: 50%; 
+				right: 50%;
+			    transform: translate(50%,-50%);
+    			font-family: Arial, Helvetica, sans-serif;
+    			font-size: 3em;
+   				font-weight: 400;
+				color:#000000;
+				text-shadow: 
+					
+				1px 6px 6px rgba(16,16,16,0.4),
+				1px 10px 10px rgba(16,16,16,0.2),
+				1px 15px 25px rgba(16,16,16,0.2),
+				1px 20px 30px rgba(16,16,16,0.4);
+				
+			}
+			
+			body
+			{
+				background-color:#dfb3b3;
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+
+			input[type=text], select
+			{
+				width: 100%;
+				padding: 12px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				resize: vertical;
+				margin-top: 6px;
+			}
+			
+			select
+            {
+				color: #808080;
+            }
+
+			button
+			{
+				background-color: #4CAF50;
+				margin-top: 6px;
+				color: white;
+				padding: 12px 20px;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+
+			button:hover
+			{
+				background-color: #45a049;
+			}
+
+			.container
+			{
+				width: 25%;
+				border-radius: 15px;
+				background-color: #D3D3D3;
+				padding: 30px;
+			}
+			
+			.txt-container
+			{
+				width: 90%;
+				border-radius: 20px;
+				background-color:black;
+				padding-left: 20px;
+				padding-right: 20px;
+				padding-top: 15px;
+				padding-bottom: 15px;
+				font-size: 150%;
+				color:white;
+			}
+			
+			.report
+			{
+				width: 30%;
+				
+				text-align: left;
+				border-radius: 5px;
+				background-color:white;
+				padding-left: 30px;
+				padding-right: 20px;
+				padding-top: 15px;
+				padding-bottom: 15px;
+			}
+
+			/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other
+				instead of next to each other */
+			@media screen and (max-width: 600px)
+			{
+				input[type=text], input[type=submit]
+				{
+					width: 50%;
+					margin-top: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+		    <span class="text">Health Estimator</span>
+		    <br/><br/><br/><br/>
+		    <div class="txt-container">
+				<p text-align:justify>
+					This Health Estimator detects how critical the patient is by checking some parameters of the 
+					patient like blood pressure, pulse and temperature by these parameters we can analyze the health status
+					on a scale of 0-2 where 0 means that he is perfectly okay and 2 means the patient falls under the critical
+					category and he needs the doctor's attention as soon as possible. Fill the form below.
+				</p>
+			</div>
+			
+			<br/><br/><br/><br/>
+			
+			<div class="container">
+				<form action="/predict" id="details" method="post">
+					<input type="text" name="name" id="name" placeholder="Enter your name" required="required" /><br/>
+					<input type="text" name="age" id="age" placeholder="Enter your age" required="required" /><br/>
+					<select name="gender" id="gender">
+						<option value="">Gender</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Others">Others</option>						
+					</select><br/>
+					<input type="text" name="SBP" id="SBP" placeholder="Enter your SBP" required="required" /><br/>
+					<input type="text" name="DBP" id="DBP" placeholder="Enter your DBP" required="required" /><br/>
+					<input type="text" name="Pulse" id="Pulse" placeholder="Enter your Pulse" required="required" /><br/>
+					<input type="text" name="Temperature" id="Temperature" placeholder="Enter your Temperature" required="required" /><br/>
+					<select name="blood_group" id="blood_group">
+						<option value="">Blood Group</option>
+						<option value="A+">A+</option>
+						<option value="A-">A-</option>
+						<option value="B+">B+</option>
+						<option value="B-">B-</option>
+						<option value="O+">O+</option>
+						<option value="O-">O-</option>
+						<option value="AB+">AB+</option>
+						<option value="AB-">AB-</option>						
+					</select><br/>
+					<input type="text" maxlength="10"  pattern="[0-9]{10}" name="phno" id="phno" placeholder="Enter phone.no" required><br>
+					<button type="submit" id="btn-report" value="Submit" >SUBMIT</button>
+				</form>
+			</div><br/><br/>
+			<span class="text1">Report</span>
+			<br></br>
+			<div class="report">
+				{{ name }}<br/><br/>
+				{{ age }}<br/><br/>
+				{{ gender }}<br/><br/>
+				{{ SBP }}<br/><br/>
+				{{ DBP }}<br/><br/>
+				{{ Pulse }}<br/><br/>
+				{{ Temperature }}<br/><br/>
+				{{ bloodgroup }}<br/><br/>
+				{{ phno }}<br/><br/>
+				<b><b>{{ prediction }}</b></b>
+			</div><br/><br/>
+			
+			
+		</center>
+		<br/><br/><br/><br/>
+	</body>
+</html>
